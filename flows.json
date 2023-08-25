@@ -1,0 +1,29 @@
+[
+    {
+        "id": "be6c84b225d7ebae",
+        "type": "cloudantplus in",
+        "z": "d275200711e853cf",
+        "name": "",
+        "cloudant": "e66983b674f8e91e",
+        "database": "rodrigozamboni",
+        "service": "_ext_",
+        "search": "_all_",
+        "design": "",
+        "index": "",
+        "x": 400,
+        "y": 20,
+        "wires": [
+            [
+                "46772abab149adbd",
+                "0be7ade419f25fd0"
+            ]
+        ]
+    },
+    {
+        "id": "e66983b674f8e91e",
+        "type": "cloudantplus",
+        "host": "https://apikey-v2-10jxylvs36u46ldr6za4p2sero86jnboc26asrbk2q0g:0f284505f2f612099b7186f933976498@8472bb0f-4f34-4675-bd25-3cf7a52343d1-bluemix.cloudantnosqldb.appdomain.cloud",
+        "name": "",
+        "useapikey": true
+    }
+]

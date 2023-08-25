@@ -1,0 +1,755 @@
+[
+    {
+        "id": "d53327b293eed78f",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "516b2102db947e16",
+        "type": "watson-text-to-speech",
+        "z": "d53327b293eed78f",
+        "name": "",
+        "lang": "pt-BR",
+        "langhidden": "pt-BR",
+        "langcustom": "NoCustomisationSetting",
+        "langcustomhidden": "",
+        "voice": "pt-BR_IsabelaV3Voice",
+        "voicehidden": "",
+        "format": "audio/wav",
+        "password": "",
+        "apikey": "vIc4ToY4-sVUUpqBamx7osF0obgOIrJNvdvUNkh1s49h",
+        "payload-response": false,
+        "service-endpoint": "https://api.us-south.text-to-speech.watson.cloud.ibm.com/instances/92a5ac1c-5ff2-4d58-b8f5-ccca09e178da",
+        "x": 460,
+        "y": 120,
+        "wires": [
+            [
+                "97cbd3b896e2f927"
+            ]
+        ]
+    },
+    {
+        "id": "68acf8a152bea108",
+        "type": "inject",
+        "z": "d53327b293eed78f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "oi amigos",
+        "payloadType": "str",
+        "x": 80,
+        "y": 120,
+        "wires": [
+            [
+                "516b2102db947e16"
+            ]
+        ]
+    },
+    {
+        "id": "97cbd3b896e2f927",
+        "type": "play audio",
+        "z": "d53327b293eed78f",
+        "name": "",
+        "voice": "74",
+        "x": 750,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "c3a67c5192f64ea9",
+        "type": "watson-speech-to-text",
+        "z": "d53327b293eed78f",
+        "name": "",
+        "alternatives": 1,
+        "speakerlabels": true,
+        "smartformatting": false,
+        "lang": "pt-BR",
+        "langhidden": "pt-BR",
+        "langcustom": "NoCustomisationSetting",
+        "langcustomhidden": "",
+        "custom-weight": "0.5",
+        "band": "BroadbandModel",
+        "bandhidden": "",
+        "keywords": "",
+        "keywords-threshold": "0.5",
+        "word-confidence": false,
+        "password": "",
+        "apikey": "bf6o7LOvNkaceVoAqoeAr2QVxZDNRNIYdmwRtZoL3EeQ",
+        "payload-response": true,
+        "streaming-mode": false,
+        "streaming-mute": true,
+        "auto-connect": false,
+        "discard-listening": false,
+        "disable-precheck": false,
+        "service-endpoint": "https://api.us-south.speech-to-text.watson.cloud.ibm.com/instances/94b30845-fc72-43ce-8620-48aaf0439403",
+        "x": 360,
+        "y": 240,
+        "wires": [
+            [
+                "e5354aea64584abb"
+            ]
+        ]
+    },
+    {
+        "id": "16f97564aba58621",
+        "type": "microphone",
+        "z": "d53327b293eed78f",
+        "name": "",
+        "x": 90,
+        "y": 240,
+        "wires": [
+            [
+                "c3a67c5192f64ea9"
+            ]
+        ]
+    },
+    {
+        "id": "e5354aea64584abb",
+        "type": "debug",
+        "z": "d53327b293eed78f",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 600,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "cec270bdf91f2d73",
+        "type": "cloudantplus out",
+        "z": "d53327b293eed78f",
+        "name": "",
+        "cloudant": "e66983b674f8e91e",
+        "database": "audios",
+        "service": "_ext_",
+        "payonly": true,
+        "operation": "insert",
+        "x": 750,
+        "y": 380,
+        "wires": [
+            [
+                "0dcf6cdd051858f1",
+                "510f47de47e42ab4"
+            ]
+        ]
+    },
+    {
+        "id": "7bd166bbeeb149a7",
+        "type": "http in",
+        "z": "d53327b293eed78f",
+        "name": "",
+        "url": "/audios",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 90,
+        "y": 500,
+        "wires": [
+            [
+                "aa6847c7ee8234d4"
+            ]
+        ]
+    },
+    {
+        "id": "096e82549bdd37f1",
+        "type": "http response",
+        "z": "d53327b293eed78f",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 670,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "98aaacc5ef8cd5a0",
+        "type": "debug",
+        "z": "d53327b293eed78f",
+        "name": "debug 9",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "aa6847c7ee8234d4",
+        "type": "cloudantplus in",
+        "z": "d53327b293eed78f",
+        "name": "",
+        "cloudant": "e66983b674f8e91e",
+        "database": "audios",
+        "service": "_ext_",
+        "search": "_all_",
+        "design": "",
+        "index": "",
+        "x": 350,
+        "y": 500,
+        "wires": [
+            [
+                "096e82549bdd37f1",
+                "98aaacc5ef8cd5a0"
+            ]
+        ]
+    },
+    {
+        "id": "5848fe0568cbc233",
+        "type": "watson-translator",
+        "z": "d53327b293eed78f",
+        "name": "",
+        "action": "translate",
+        "basemodel": "ar-en",
+        "domain": "general",
+        "srclang": "pt",
+        "destlang": "en",
+        "apikey": "5zLWUj-L-YX9TREV4ypcETuq2SMA4t6LVQ7AzM6VdSOv",
+        "custom": "",
+        "domainhidden": "general",
+        "srclanghidden": "pt",
+        "destlanghidden": "en",
+        "basemodelhidden": "ar-en",
+        "customhidden": "",
+        "filetype": "forcedglossary",
+        "trainid": "",
+        "lgparams2": true,
+        "service-endpoint": "https://api.us-south.language-translator.watson.cloud.ibm.com/instances/e3f13159-cfa3-45ab-86f5-2a753deb3748",
+        "x": 490,
+        "y": 380,
+        "wires": [
+            [
+                "de2da8f20390ab13",
+                "cec270bdf91f2d73"
+            ]
+        ]
+    },
+    {
+        "id": "3ef351104684e2cb",
+        "type": "microphone",
+        "z": "d53327b293eed78f",
+        "name": "",
+        "x": 90,
+        "y": 380,
+        "wires": [
+            [
+                "fe116d6d950afcfa"
+            ]
+        ]
+    },
+    {
+        "id": "fe116d6d950afcfa",
+        "type": "watson-speech-to-text",
+        "z": "d53327b293eed78f",
+        "name": "",
+        "alternatives": 1,
+        "speakerlabels": true,
+        "smartformatting": false,
+        "lang": "pt-BR",
+        "langhidden": "pt-BR",
+        "langcustom": "NoCustomisationSetting",
+        "langcustomhidden": "",
+        "custom-weight": "0.5",
+        "band": "BroadbandModel",
+        "bandhidden": "",
+        "keywords": "",
+        "keywords-threshold": "0.5",
+        "word-confidence": false,
+        "password": "",
+        "apikey": "bf6o7LOvNkaceVoAqoeAr2QVxZDNRNIYdmwRtZoL3EeQ",
+        "payload-response": true,
+        "streaming-mode": false,
+        "streaming-mute": true,
+        "auto-connect": false,
+        "discard-listening": false,
+        "disable-precheck": false,
+        "service-endpoint": "https://api.us-south.speech-to-text.watson.cloud.ibm.com/instances/94b30845-fc72-43ce-8620-48aaf0439403",
+        "x": 280,
+        "y": 380,
+        "wires": [
+            [
+                "5848fe0568cbc233"
+            ]
+        ]
+    },
+    {
+        "id": "de2da8f20390ab13",
+        "type": "debug",
+        "z": "d53327b293eed78f",
+        "name": "debug 10",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "0dcf6cdd051858f1",
+        "type": "http response",
+        "z": "d53327b293eed78f",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 890,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "510f47de47e42ab4",
+        "type": "debug",
+        "z": "d53327b293eed78f",
+        "name": "debug 11",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 860,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "55168f8aaeecfe94",
+        "type": "watson-translator",
+        "z": "d53327b293eed78f",
+        "name": "",
+        "action": "translate",
+        "basemodel": "ar-en",
+        "domain": "general",
+        "srclang": "pt",
+        "destlang": "en",
+        "apikey": "5zLWUj-L-YX9TREV4ypcETuq2SMA4t6LVQ7AzM6VdSOv",
+        "custom": "",
+        "domainhidden": "general",
+        "srclanghidden": "pt",
+        "destlanghidden": "en",
+        "basemodelhidden": "ar-en",
+        "customhidden": "",
+        "filetype": "forcedglossary",
+        "trainid": "",
+        "lgparams2": true,
+        "service-endpoint": "https://api.us-south.language-translator.watson.cloud.ibm.com/instances/e3f13159-cfa3-45ab-86f5-2a753deb3748",
+        "x": 490,
+        "y": 780,
+        "wires": [
+            [
+                "effa503d26015621",
+                "b162423f965eed65"
+            ]
+        ]
+    },
+    {
+        "id": "017be7195c2065ed",
+        "type": "microphone",
+        "z": "d53327b293eed78f",
+        "name": "",
+        "x": 110,
+        "y": 780,
+        "wires": [
+            [
+                "928fdfb8310c550c"
+            ]
+        ]
+    },
+    {
+        "id": "928fdfb8310c550c",
+        "type": "watson-speech-to-text",
+        "z": "d53327b293eed78f",
+        "name": "",
+        "alternatives": 1,
+        "speakerlabels": true,
+        "smartformatting": false,
+        "lang": "pt-BR",
+        "langhidden": "pt-BR",
+        "langcustom": "NoCustomisationSetting",
+        "langcustomhidden": "",
+        "custom-weight": "0.5",
+        "band": "BroadbandModel",
+        "bandhidden": "",
+        "keywords": "",
+        "keywords-threshold": "0.5",
+        "word-confidence": false,
+        "password": "",
+        "apikey": "bf6o7LOvNkaceVoAqoeAr2QVxZDNRNIYdmwRtZoL3EeQ",
+        "payload-response": true,
+        "streaming-mode": false,
+        "streaming-mute": true,
+        "auto-connect": false,
+        "discard-listening": false,
+        "disable-precheck": false,
+        "service-endpoint": "https://api.us-south.speech-to-text.watson.cloud.ibm.com/instances/94b30845-fc72-43ce-8620-48aaf0439403",
+        "x": 280,
+        "y": 780,
+        "wires": [
+            [
+                "55168f8aaeecfe94"
+            ]
+        ]
+    },
+    {
+        "id": "effa503d26015621",
+        "type": "watson-translator",
+        "z": "d53327b293eed78f",
+        "name": "",
+        "action": "translate",
+        "basemodel": "ar-en",
+        "domain": "general",
+        "srclang": "en",
+        "destlang": "fr",
+        "apikey": "5zLWUj-L-YX9TREV4ypcETuq2SMA4t6LVQ7AzM6VdSOv",
+        "custom": "",
+        "domainhidden": "general",
+        "srclanghidden": "en",
+        "destlanghidden": "fr",
+        "basemodelhidden": "ar-en",
+        "customhidden": "",
+        "filetype": "forcedglossary",
+        "trainid": "",
+        "lgparams2": true,
+        "service-endpoint": "https://api.us-south.language-translator.watson.cloud.ibm.com/instances/e3f13159-cfa3-45ab-86f5-2a753deb3748",
+        "x": 710,
+        "y": 780,
+        "wires": [
+            [
+                "9c6413a0bd6fd99f"
+            ]
+        ]
+    },
+    {
+        "id": "9c6413a0bd6fd99f",
+        "type": "debug",
+        "z": "d53327b293eed78f",
+        "name": "debug 12",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "b162423f965eed65",
+        "type": "debug",
+        "z": "d53327b293eed78f",
+        "name": "debug 13",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "768f81bacb785ae3",
+        "type": "microphone",
+        "z": "d53327b293eed78f",
+        "name": "",
+        "x": 110,
+        "y": 880,
+        "wires": [
+            [
+                "fc9a0bc89dd7eac4"
+            ]
+        ]
+    },
+    {
+        "id": "fc9a0bc89dd7eac4",
+        "type": "watson-speech-to-text",
+        "z": "d53327b293eed78f",
+        "name": "",
+        "alternatives": 1,
+        "speakerlabels": true,
+        "smartformatting": false,
+        "lang": "pt-BR",
+        "langhidden": "pt-BR",
+        "langcustom": "NoCustomisationSetting",
+        "langcustomhidden": "",
+        "custom-weight": "0.5",
+        "band": "BroadbandModel",
+        "bandhidden": "",
+        "keywords": "",
+        "keywords-threshold": "0.5",
+        "word-confidence": false,
+        "password": "",
+        "apikey": "bf6o7LOvNkaceVoAqoeAr2QVxZDNRNIYdmwRtZoL3EeQ",
+        "payload-response": true,
+        "streaming-mode": false,
+        "streaming-mute": true,
+        "auto-connect": false,
+        "discard-listening": false,
+        "disable-precheck": false,
+        "service-endpoint": "https://api.us-south.speech-to-text.watson.cloud.ibm.com/instances/94b30845-fc72-43ce-8620-48aaf0439403",
+        "x": 280,
+        "y": 880,
+        "wires": [
+            [
+                "32643f821821e095",
+                "ce72e4b9f4670f0b"
+            ]
+        ]
+    },
+    {
+        "id": "cad7f6a6eba99d2e",
+        "type": "debug",
+        "z": "d53327b293eed78f",
+        "name": "debug 14",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "32643f821821e095",
+        "type": "function",
+        "z": "d53327b293eed78f",
+        "name": "function 1",
+        "func": "\nvar res = \"\"\nvar qntString = msg.payload.split(\" \")[0]\nvar qnt = 0\n\nif( qntString == \"uma\" ){\n    qnt = 1\n} else if (qntString == \"duas\") {\n    qnt = 2\n} else if (qntString == \"três\") {\n    qnt = 3\n} else if (qntString == \"quatro\") {\n    qnt = 4\n} else if (qntString == \"cinco\") {\n    qnt = 5\n} else if (qntString == \"seis\") {\n    qnt = 6\n} else if (qntString == \"sete\") {\n    qnt = 7\n} else if (qntString == \"oito\") {\n    qnt = 8\n} else if (qntString == \"nove\") {\n    qnt = 9\n} else if (qntString == \"dez\") {\n    qnt = 10\n} else if (qntString == \"dessas\") {\n    qnt = 10\n}\n\n\nvar word = msg.payload.split(\" \")[1]\nvar i = 0\n\nfor(i=0;i<qnt;i++){\n res += word+\" | \"\n}\n\nmsg.payload = res\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 880,
+        "wires": [
+            [
+                "cad7f6a6eba99d2e"
+            ]
+        ]
+    },
+    {
+        "id": "ce72e4b9f4670f0b",
+        "type": "debug",
+        "z": "d53327b293eed78f",
+        "name": "debug 15",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "bda5eb23b3be4b67",
+        "type": "microphone",
+        "z": "d53327b293eed78f",
+        "name": "",
+        "x": 450,
+        "y": 1240,
+        "wires": [
+            [
+                "23214a774185b493"
+            ]
+        ]
+    },
+    {
+        "id": "23214a774185b493",
+        "type": "watson-speech-to-text",
+        "z": "d53327b293eed78f",
+        "name": "",
+        "alternatives": 1,
+        "speakerlabels": true,
+        "smartformatting": true,
+        "lang": "pt-BR",
+        "langhidden": "pt-BR",
+        "langcustom": "NoCustomisationSetting",
+        "langcustomhidden": "",
+        "custom-weight": "0.5",
+        "band": "BroadbandModel",
+        "bandhidden": "",
+        "keywords": "",
+        "keywords-threshold": "0.5",
+        "word-confidence": false,
+        "password": "",
+        "apikey": "bf6o7LOvNkaceVoAqoeAr2QVxZDNRNIYdmwRtZoL3EeQ",
+        "payload-response": true,
+        "streaming-mode": false,
+        "streaming-mute": true,
+        "auto-connect": false,
+        "discard-listening": false,
+        "disable-precheck": false,
+        "service-endpoint": "https://api.us-south.speech-to-text.watson.cloud.ibm.com/instances/94b30845-fc72-43ce-8620-48aaf0439403",
+        "x": 280,
+        "y": 1140,
+        "wires": [
+            [
+                "532a00ff66f9856e"
+            ]
+        ]
+    },
+    {
+        "id": "532a00ff66f9856e",
+        "type": "watson-translator",
+        "z": "d53327b293eed78f",
+        "name": "",
+        "action": "translate",
+        "basemodel": "ar-en",
+        "domain": "general",
+        "srclang": "pt",
+        "destlang": "en",
+        "apikey": "5zLWUj-L-YX9TREV4ypcETuq2SMA4t6LVQ7AzM6VdSOv",
+        "custom": "",
+        "domainhidden": "general",
+        "srclanghidden": "pt",
+        "destlanghidden": "en",
+        "basemodelhidden": "ar-en",
+        "customhidden": "",
+        "filetype": "forcedglossary",
+        "trainid": "",
+        "lgparams2": true,
+        "service-endpoint": "https://api.us-south.language-translator.watson.cloud.ibm.com/instances/e3f13159-cfa3-45ab-86f5-2a753deb3748",
+        "x": 490,
+        "y": 1140,
+        "wires": [
+            [
+                "26cb70b49a60e1ac"
+            ]
+        ]
+    },
+    {
+        "id": "b1588531c4250d6b",
+        "type": "debug",
+        "z": "d53327b293eed78f",
+        "name": "debug 16",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "26cb70b49a60e1ac",
+        "type": "watson-text-to-speech",
+        "z": "d53327b293eed78f",
+        "name": "",
+        "lang": "en-US",
+        "langhidden": "en-US",
+        "langcustom": "NoCustomisationSetting",
+        "langcustomhidden": "",
+        "voice": "en-US_MichaelExpressive",
+        "voicehidden": "",
+        "format": "audio/wav",
+        "password": "",
+        "apikey": "vIc4ToY4-sVUUpqBamx7osF0obgOIrJNvdvUNkh1s49h",
+        "payload-response": false,
+        "service-endpoint": "https://api.us-south.text-to-speech.watson.cloud.ibm.com/instances/92a5ac1c-5ff2-4d58-b8f5-ccca09e178da",
+        "x": 680,
+        "y": 1140,
+        "wires": [
+            [
+                "98f0cb64afbadbc4",
+                "b1588531c4250d6b"
+            ]
+        ]
+    },
+    {
+        "id": "98f0cb64afbadbc4",
+        "type": "watson-speech-to-text",
+        "z": "d53327b293eed78f",
+        "name": "",
+        "alternatives": 1,
+        "speakerlabels": true,
+        "smartformatting": true,
+        "lang": "en-US",
+        "langhidden": "en-US",
+        "langcustom": "NoCustomisationSetting",
+        "langcustomhidden": "",
+        "custom-weight": "0.5",
+        "band": "Telephony",
+        "bandhidden": "Telephony",
+        "keywords": "",
+        "keywords-threshold": "0.5",
+        "word-confidence": false,
+        "password": "",
+        "apikey": "bf6o7LOvNkaceVoAqoeAr2QVxZDNRNIYdmwRtZoL3EeQ",
+        "payload-response": true,
+        "streaming-mode": false,
+        "streaming-mute": true,
+        "auto-connect": false,
+        "discard-listening": false,
+        "disable-precheck": false,
+        "service-endpoint": "https://api.us-south.speech-to-text.watson.cloud.ibm.com/instances/94b30845-fc72-43ce-8620-48aaf0439403",
+        "x": 880,
+        "y": 1140,
+        "wires": [
+            [
+                "ec43adf75526f58a"
+            ]
+        ]
+    },
+    {
+        "id": "ec43adf75526f58a",
+        "type": "debug",
+        "z": "d53327b293eed78f",
+        "name": "debug 17",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 1220,
+        "wires": []
+    },
+    {
+        "id": "e66983b674f8e91e",
+        "type": "cloudantplus",
+        "host": "https://apikey-v2-10jxylvs36u46ldr6za4p2sero86jnboc26asrbk2q0g:0f284505f2f612099b7186f933976498@8472bb0f-4f34-4675-bd25-3cf7a52343d1-bluemix.cloudantnosqldb.appdomain.cloud",
+        "name": "",
+        "useapikey": true
+    }
+]

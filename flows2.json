@@ -1,0 +1,528 @@
+[
+    {
+        "id": "d275200711e853cf",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "e66983b674f8e91e",
+        "type": "cloudantplus",
+        "host": "https://apikey-v2-10jxylvs36u46ldr6za4p2sero86jnboc26asrbk2q0g:0f284505f2f612099b7186f933976498@8472bb0f-4f34-4675-bd25-3cf7a52343d1-bluemix.cloudantnosqldb.appdomain.cloud",
+        "name": "",
+        "useapikey": true
+    },
+    {
+        "id": "cfdbeff1ca44997c",
+        "type": "ibmiot",
+        "name": "PedroM",
+        "keepalive": "60",
+        "serverName": "fgu4wo.messaging.internetofthings.ibmcloud.com/",
+        "cleansession": true,
+        "appId": "",
+        "shared": false
+    },
+    {
+        "id": "4aa485ba0729f849",
+        "type": "ibmiot",
+        "name": "OReidoSwift",
+        "keepalive": "60",
+        "serverName": "71kkmb.messaging.internetofthings.ibmcloud.com",
+        "cleansession": true,
+        "appId": "",
+        "shared": false
+    },
+    {
+        "id": "612c31b087349d06",
+        "type": "http in",
+        "z": "d275200711e853cf",
+        "name": "",
+        "url": "/students",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 110,
+        "y": 20,
+        "wires": [
+            [
+                "be6c84b225d7ebae"
+            ]
+        ]
+    },
+    {
+        "id": "46772abab149adbd",
+        "type": "http response",
+        "z": "d275200711e853cf",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 670,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "0be7ade419f25fd0",
+        "type": "debug",
+        "z": "d275200711e853cf",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "3093b0db708f3cba",
+        "type": "http in",
+        "z": "d275200711e853cf",
+        "name": "",
+        "url": "/students",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 120,
+        "y": 360,
+        "wires": [
+            [
+                "436bb12269ad6054"
+            ]
+        ]
+    },
+    {
+        "id": "436bb12269ad6054",
+        "type": "cloudantplus out",
+        "z": "d275200711e853cf",
+        "name": "",
+        "cloudant": "e66983b674f8e91e",
+        "database": "rodrigozamboni",
+        "service": "_ext_",
+        "payonly": true,
+        "operation": "insert",
+        "x": 400,
+        "y": 360,
+        "wires": [
+            [
+                "9edbe0a8d8ad1e20",
+                "d2d8c393ba9a4c8a"
+            ]
+        ]
+    },
+    {
+        "id": "9edbe0a8d8ad1e20",
+        "type": "http response",
+        "z": "d275200711e853cf",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 670,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "d2d8c393ba9a4c8a",
+        "type": "debug",
+        "z": "d275200711e853cf",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "c539741c62295977",
+        "type": "http in",
+        "z": "d275200711e853cf",
+        "name": "",
+        "url": "/students",
+        "method": "put",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 120,
+        "y": 580,
+        "wires": [
+            [
+                "30024b905a5fe9b1"
+            ]
+        ]
+    },
+    {
+        "id": "30024b905a5fe9b1",
+        "type": "cloudantplus out",
+        "z": "d275200711e853cf",
+        "name": "",
+        "cloudant": "e66983b674f8e91e",
+        "database": "rodrigozamboni",
+        "service": "_ext_",
+        "payonly": true,
+        "operation": "insert",
+        "x": 400,
+        "y": 580,
+        "wires": [
+            [
+                "f39d48fd01fe339f",
+                "bef15c09e31e8a40"
+            ]
+        ]
+    },
+    {
+        "id": "f39d48fd01fe339f",
+        "type": "http response",
+        "z": "d275200711e853cf",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 670,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "bef15c09e31e8a40",
+        "type": "debug",
+        "z": "d275200711e853cf",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "be6c84b225d7ebae",
+        "type": "cloudantplus in",
+        "z": "d275200711e853cf",
+        "name": "",
+        "cloudant": "e66983b674f8e91e",
+        "database": "rodrigozamboni",
+        "service": "_ext_",
+        "search": "_all_",
+        "design": "",
+        "index": "",
+        "x": 400,
+        "y": 20,
+        "wires": [
+            [
+                "46772abab149adbd",
+                "0be7ade419f25fd0"
+            ]
+        ]
+    },
+    {
+        "id": "7ff92faf283f54d8",
+        "type": "http in",
+        "z": "d275200711e853cf",
+        "name": "",
+        "url": "/students",
+        "method": "delete",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 120,
+        "y": 780,
+        "wires": [
+            [
+                "4f1b3e1b3f11b780"
+            ]
+        ]
+    },
+    {
+        "id": "4f1b3e1b3f11b780",
+        "type": "cloudantplus out",
+        "z": "d275200711e853cf",
+        "name": "",
+        "cloudant": "e66983b674f8e91e",
+        "database": "rodrigozamboni",
+        "service": "_ext_",
+        "payonly": true,
+        "operation": "delete",
+        "x": 400,
+        "y": 780,
+        "wires": [
+            [
+                "973b4f802f15c781",
+                "cdeedb574738032f"
+            ]
+        ]
+    },
+    {
+        "id": "973b4f802f15c781",
+        "type": "http response",
+        "z": "d275200711e853cf",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 670,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "cdeedb574738032f",
+        "type": "debug",
+        "z": "d275200711e853cf",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "fbd7aa8d0dc59b91",
+        "type": "http in",
+        "z": "d275200711e853cf",
+        "name": "",
+        "url": "/students/single",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 200,
+        "wires": [
+            [
+                "81449f902f1b3b24"
+            ]
+        ]
+    },
+    {
+        "id": "6c22cc39109e0364",
+        "type": "http response",
+        "z": "d275200711e853cf",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 670,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "f578f31dd866b321",
+        "type": "debug",
+        "z": "d275200711e853cf",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "81449f902f1b3b24",
+        "type": "cloudantplus in",
+        "z": "d275200711e853cf",
+        "name": "",
+        "cloudant": "e66983b674f8e91e",
+        "database": "rodrigozamboni",
+        "service": "_ext_",
+        "search": "_id_",
+        "design": "",
+        "index": "",
+        "x": 400,
+        "y": 200,
+        "wires": [
+            [
+                "6c22cc39109e0364",
+                "f578f31dd866b321"
+            ]
+        ]
+    },
+    {
+        "id": "242ca9ba6f87bcda",
+        "type": "http in",
+        "z": "d275200711e853cf",
+        "name": "",
+        "url": "/cars/batch",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 940,
+        "y": 20,
+        "wires": [
+            [
+                "aefae79ba2c4fd27"
+            ]
+        ]
+    },
+    {
+        "id": "2561db3059c204de",
+        "type": "cloudantplus out",
+        "z": "d275200711e853cf",
+        "name": "",
+        "cloudant": "e66983b674f8e91e",
+        "database": "zamboniestacionamentos",
+        "service": "_ext_",
+        "payonly": true,
+        "operation": "insert",
+        "x": 1330,
+        "y": 20,
+        "wires": [
+            [
+                "4297c151b61222b8"
+            ]
+        ]
+    },
+    {
+        "id": "6f3e72a1dbeb7bfc",
+        "type": "http response",
+        "z": "d275200711e853cf",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1650,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "eb193cf0215be5a9",
+        "type": "debug",
+        "z": "d275200711e853cf",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1620,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "aefae79ba2c4fd27",
+        "type": "split",
+        "z": "d275200711e853cf",
+        "name": "",
+        "splt": ",",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 1150,
+        "y": 20,
+        "wires": [
+            [
+                "2561db3059c204de"
+            ]
+        ]
+    },
+    {
+        "id": "4297c151b61222b8",
+        "type": "join",
+        "z": "d275200711e853cf",
+        "name": "",
+        "mode": "auto",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": true,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 1510,
+        "y": 20,
+        "wires": [
+            [
+                "6f3e72a1dbeb7bfc",
+                "eb193cf0215be5a9"
+            ]
+        ]
+    },
+    {
+        "id": "67a0fbe2c7583462",
+        "type": "http in",
+        "z": "d275200711e853cf",
+        "name": "",
+        "url": "/cars",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 920,
+        "y": 180,
+        "wires": [
+            [
+                "d3f7301f9c0ee3aa"
+            ]
+        ]
+    },
+    {
+        "id": "ca35ce1542056a22",
+        "type": "http response",
+        "z": "d275200711e853cf",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1490,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "18a39864870842b4",
+        "type": "debug",
+        "z": "d275200711e853cf",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1500,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "d3f7301f9c0ee3aa",
+        "type": "cloudantplus in",
+        "z": "d275200711e853cf",
+        "name": "",
+        "cloudant": "e66983b674f8e91e",
+        "database": "zamboniestacionamentos",
+        "service": "_ext_",
+        "search": "_all_",
+        "design": "",
+        "index": "",
+        "x": 1250,
+        "y": 180,
+        "wires": [
+            [
+                "ca35ce1542056a22",
+                "18a39864870842b4"
+            ]
+        ]
+    }
+]
